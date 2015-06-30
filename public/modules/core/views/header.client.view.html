@@ -26,25 +26,10 @@
        </li>
     </ul>
 
-    <form class="navbar-form navbar-right navbar-form-group" ng-submit="emailSubscribe()">
-  	  <div class="form-group">
-  	    <label for="joinMailingListEmail" class="sr-only">Email</label>
-  	    <input type="email" class="form-control" id="joinMailingListEmail" placeholder="Email address" ng-model="formData.email">
-      </div>
-  	  <input class="btn btn-default" type="submit" value="Join the Mailing List">
-  	</form>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/#!/mailing-list-signup">Join Our Mailing List!</a></li>
+    </ul>
 
   </nav>
-
-  <div class="alert alert-warning" role="alert" ng-show="formData.error">
-      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-      <span class="sr-only">Error:</span>
-      <span ng-bind="formData.error"></span>
-  </div>
-  <div class="alert alert-success" role="alert" ng-show="formData.success">
-      <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-      <span class="sr-only">Success:</span>
-      <span ng-bind="formData.success"></span>
-  </div>
 
 </div>

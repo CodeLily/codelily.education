@@ -8,6 +8,10 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 
 		// Home state routing
 		$stateProvider.
+		state('mailing-list-signup', {
+			url: '/mailing-list-signup',
+			templateUrl: 'modules/core/views/mailing-list-signup.client.view.html'
+		}).
 		state('classes', {
 			url: '/classes',
 			templateUrl: 'modules/core/views/classes.client.view.html'

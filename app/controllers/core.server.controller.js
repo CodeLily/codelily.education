@@ -17,7 +17,7 @@ exports.index = function(req, res) {
 };
 
 exports.emailSubscribe = function(req, res) {
-	var validEmail = validator.validate(req.params.email);
+	var validEmail = validator.validate(req.body.email);
 
 	if (process.env.NODE_ENV === 'production' && validEmail) {
 		mc.lists.subscribe({id: req.params.listId, email:{email:req.params.email}},
