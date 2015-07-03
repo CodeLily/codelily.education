@@ -1,0 +1,63 @@
+<section data-ng-controller="MailingListSignupController">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<h2 class="text-center">Stay in the loop by joining our mailing list!</h2>
+			</div>
+		</div>
+		<br>
+		<form name="mailingListForm" ng-submit="subscribeEmail()">
+			<!-- FIRST NAME -->
+			<div class="form-group col-xs-12 col-sm-6">
+				<label for="fname">First Name</label>
+				<input class="form-control" name="fname" type="text" placeholder="Lily" ng-model="user.fname">
+			</div>
+			<!-- LAST NAME -->
+			<div class="form-group col-xs-12 col-sm-6">
+				<label for="lname">Last Name</label>
+				<input class="form-control" name="lname" type="text" placeholder="Coder" ng-model="user.lname">
+			</div>
+			<!-- EMAIL -->
+			<div class="form-group col-xs-12">
+				<label for="email">Email</label>
+				<input class="form-control" name="emailAddr" type="email" placeholder="Lily.Coder@gmail.com" ng-model="user.emailAddr">
+			</div>
+			<!-- INTERESTED IN -->
+			<label class="col-xs-12">What are you interested in learning?</label>
+			<div class="checkbox interests col-xs-12">
+				<label>
+					<input class="checkbox" name="frontEndWebDev" type="checkbox" ng-model="user.frontEndWebDev">Front End Web Dev (HTML, CSS, JavaScript)
+				</label>
+				<label>
+					<input class="checkbox" name="backEndWebDev" type="checkbox" ng-model="user.backEndWebDev">Back End Web Dev (Server Side Programming/Scripting)
+				</label>
+				<label>
+					<input class="checkbox" name="dbForDev" type="checkbox" ng-model="user.dbForDev">Databases for Developers
+				</label>
+				<label>
+					<input class="checkbox" name="dbAdmin" type="checkbox" ng-model="user.dbAdmin">Database Administration
+				</label>
+				<label>
+					<input class="checkbox" name="dbForNonDev" type="checkbox" ng-model="user.dbForNonDev">Databases for Non-Developers
+				</label>
+				<label>
+					<input class="checkbox" name="forKids" type="checkbox" ng-model="user.forKids">I want my <strong>kids</strong> to learn how to code!
+				</label>
+				<label>
+					<input class="checkbox" name="idk" type="checkbox" ng-model="user.idk">I don't know what I'm interested in but I want to start learning!
+				</label>
+			</div>
+			<!-- SUBMIT -->
+			<div class="form-group col-xs-12 text-center">
+				<input type="submit" class="btn btn-primary" value="Signup">
+			</div>
+		</form>
+
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<span class="text-success" ng-bind-html="success"></span>
+				<span class="text-danger" ng-bind-html="error"></span>
+			</div>
+		</div>
+	</div>
+</section>

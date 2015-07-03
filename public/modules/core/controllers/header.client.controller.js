@@ -18,7 +18,7 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 		$scope.formData = {};
 
 		$scope.emailSubscribe = function() {
-			$http.post($location.protocol() + '://' + $location.host() + '/mail/subscribe/d7142be008/' + $scope.formData.email)
+			$http.post($location.protocol() + '://' + $location.host() + '/mail/subscribe/d7142be008')
 			.success(function(data, status, headers, config) {
 				if(!data.error) {
 					$scope.formData.success = $scope.formData.email + ' has been subscribed to the CodeLily mailing list.  Thanks! We look forward to talking with you soon ^_^';
