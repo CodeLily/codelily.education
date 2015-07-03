@@ -1,4 +1,4 @@
-<section data-ng-controller="MailinglistsignupController">
+<section data-ng-controller="MailingListSignupController">
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
@@ -6,7 +6,7 @@
 			</div>
 		</div>
 		<br>
-		<form name="signup-form" onsubmit="subscribeEmail()">
+		<form name="mailingListForm" ng-submit="subscribeEmail()">
 			<!-- FIRST NAME -->
 			<div class="form-group col-xs-12 col-sm-6">
 				<label for="fname">First Name</label>
@@ -20,7 +20,7 @@
 			<!-- EMAIL -->
 			<div class="form-group col-xs-12">
 				<label for="email">Email</label>
-				<input class="form-control" name="email" type="email" placeholder="Lily.Coder@gmail.com" ng-model="user.email">
+				<input class="form-control" name="emailAddr" type="email" placeholder="Lily.Coder@gmail.com" ng-model="user.emailAddr">
 			</div>
 			<!-- INTERESTED IN -->
 			<label class="col-xs-12">What are you interested in learning?</label>
@@ -43,11 +43,21 @@
 				<label>
 					<input class="checkbox" name="forKids" type="checkbox" ng-model="user.forKids">I want my <strong>kids</strong> to learn how to code!
 				</label>
+				<label>
+					<input class="checkbox" name="idk" type="checkbox" ng-model="user.idk">I don't know what I'm interested in but I want to start learning!
+				</label>
 			</div>
 			<!-- SUBMIT -->
 			<div class="form-group col-xs-12 text-center">
 				<input type="submit" class="btn btn-primary" value="Signup">
 			</div>
 		</form>
+
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<span class="text-success" ng-bind-html="success"></span>
+				<span class="text-danger" ng-bind-html="error"></span>
+			</div>
+		</div>
 	</div>
 </section>
