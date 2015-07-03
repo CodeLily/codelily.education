@@ -9,7 +9,7 @@ angular.module('core').controller('MailingListSignupController', ['$scope', '$ht
 					delete $scope.user;
 					$scope.mailingListForm.$setPristine();
 					$scope.success = response.message;
-					delete $scope.error;
+					$scope.error = response.error;
 				})
 				.error(function(error) {
 					$scope.error = error.message;

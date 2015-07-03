@@ -32,33 +32,53 @@ exports.emailSubscribe = function(req, res) {
 	var validEmail = validator.validate(req.body.emailAddr);
 	var mcData = {
 		id: req.params.listId,
-		email: {email:req.body.emailAddr},
-		merge_fields: {
-			FNAME: req.body.fname,
-			LNAME: req.body.lname
+		email: {
+			email: req.body.emailAddr
 		},
-		interests: {
-			'a6c111d220': req.body.frontEndWebDev,
-			'5a9a0ceb8e': req.body.backEndWebDev,
-			'f00bf5af31': req.body.dbForDev,
-			'11de21f773': req.body.dbAdmin,
-			'0035c371bf': req.body.dbForNonDev,
-			'3f32d7d9de': req.body.forKids,
-			'62de2aa30f': req.body.idk
+		merge_vars: {
+			FNAME: req.body.fname,
+			LNAME: req.body.lname,
+			groupings: [
+				{
+					name: 'Interested In',
+					groups: []
+				}
+			]
 		}
 	};
 
-	if (process.env.NODE_ENV === 'production' && validEmail) {
+	if (req.body.frontEndWebDev && req.body.frontEndWebDev === true)
+		mcData.merge_vars.groupings[0].groups.push('Front End Development (HTML, CSS, JavaScript)');
+
+	if (req.body.backEndWebDev && req.body.backEndWebDev === true)
+		mcData.merge_vars.groupings[0].groups.push('Back End Development (Server Side Programming/Scripting)');
+
+	if (req.body.dbForDev && req.body.dbForDev === true)
+		mcData.merge_vars.groupings[0].groups.push('Databases for Developers');
+
+	if (req.body.dbAdmin && req.body.dbAdmin === true)
+		mcData.merge_vars.groupings[0].groups.push('Database Administration');
+
+	if (req.body.dbForNonDev && req.body.dbForNonDev === true)
+		mcData.merge_vars.groupings[0].groups.push('Databases for Non-Developers');
+
+	if (req.body.forKids && req.body.forKids === true)
+		mcData.merge_vars.groupings[0].groups.push('I want my kids to learn how to code!');
+
+	if (req.body.idk && req.body.idk === true)
+		mcData.merge_vars.groupings[0].groups.push('I don\'t know what I\'m interested in but I want to start learning!');
+
+	if (process.env.NODE_ENV === 'production' && validEmail || true) {
 		mc.lists.subscribe(mcData,
 		function(data) {
 			res.send({message: 'Thank you <strong>' + req.body.fname + '</strong>!<br>Your email (<strong>' + req.body.emailAddr + '</strong>) has been subscribed!'});
 		},
 		function(error) {
-			res.send({email: req.body.emailAddr, message: 'There was an error subscribing that email.\n' + error.error});
+			res.send({email: req.body.emailAddr, error: 'There was an error subscribing that email.\n' + error.error});
 		});
 	} else if (process.env.NODE_ENV === 'development') {
 		res.send({email: req.body.emailAddr, message: 'This email <strong>' + req.body.emailAddr + '</strong> would have been subscribed - but you are hitting a dev server!'});
 	} else {
-		res.send({email: req.body.emailAddr, message: 'Invalid email address format'});
+		res.send({email: req.body.emailAddr, error: 'Invalid email address format'});
 	}
 };
